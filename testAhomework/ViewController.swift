@@ -22,6 +22,13 @@ class ViewController: UIViewController {
         return $0
     }(UIView())
     
+    private let yellowView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .yellow
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         layout()
@@ -30,6 +37,7 @@ class ViewController: UIViewController {
     private func layout() {
         view.addSubview(redView)
         view.addSubview(blueView)
+        view.addSubview(yellowView)
         
         NSLayoutConstraint.activate([
             // redView
@@ -42,7 +50,13 @@ class ViewController: UIViewController {
             blueView.topAnchor.constraint(equalTo: redView.bottomAnchor, constant: 20),
             blueView.leadingAnchor.constraint(equalTo: redView.leadingAnchor),
             blueView.trailingAnchor.constraint(equalTo: redView.trailingAnchor),
-            blueView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            blueView.heightAnchor.constraint(equalToConstant: 250),
+            
+            //yellowView
+            yellowView.topAnchor.constraint(equalTo: blueView.bottomAnchor, constant: 20),
+            yellowView.leadingAnchor.constraint(equalTo: blueView.leadingAnchor),
+            yellowView.trailingAnchor.constraint(equalTo: blueView.trailingAnchor),
+            yellowView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }
